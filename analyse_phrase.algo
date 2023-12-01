@@ -1,0 +1,53 @@
+ALGORITHM synthese_phrase
+VAR
+   
+   /* declaration des variables de travail    */
+   phrase : STRING ; 
+   car    : CHAR   ;
+   i      : INTEGER ;
+
+   /* variables de resultat */
+   nbr_car      : INTEGER := 0 ;
+   nbr_mots     : INTEGER := 0 ;
+   nbr_voyelles : INTEGER := 0 ;
+
+BEGIN
+
+  WRITE ('Entrer une phrase qui se termine par un point(.)':)
+  READ  (phrase );
+
+  i   := 1 ;
+  car := phrase(i) ; /* initialisé par le premier caractere de la phrase */
+
+  WHILE car <> "."  DO
+
+     nbr_car ++ ;
+     
+     /* si le caractere est un voyelle en incremente la compteur des voyelles  */
+     IF ( car == "a" OR  car == "A" OR         
+          car == "e" OR  car == "E" OR 
+          car == "i" OR  car == "I" OR 
+          car == "o" OR  car == "O" OR 
+          car == "u" OR  car == "U" OR 
+          car == "y" OR  car == "Y"   )  THEN
+
+          nbr_voyelles ++ ;     
+      /* si le caractere est un espace alors en incremente le compteur des mots*/
+      ELSE_IF  ( car == " " )  THEN
+
+           nbr_mots ++ ;
+         
+      END_IF
+
+      i := i + 1 ;
+
+      car = phrase(i) ;    
+    
+  END_WHILE
+
+  write( "Le nombre total des caracteres dans la phrase est :", i) ;
+  write( "Le nombre total des caracteres voyelles dans la phrase est :", nbr_voyelles) ;
+  write( "Le nombre total des mots dans la phrase est :" ,nbr_mots) ;
+
+END
+
